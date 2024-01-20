@@ -22,8 +22,7 @@ public class Address {
 
 
     @OneToOne(mappedBy = "address")
-    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Employee employee;
 
 }

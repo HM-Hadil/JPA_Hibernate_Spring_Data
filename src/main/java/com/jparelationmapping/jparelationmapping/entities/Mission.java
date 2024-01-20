@@ -7,7 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -23,6 +25,6 @@ public class Mission {
     private String description;
 
 
-    @ManyToMany(mappedBy = "missions")
-    private List<Employee> employees = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "missions")
+    private Set<Employee> employees = new HashSet<>();
 }

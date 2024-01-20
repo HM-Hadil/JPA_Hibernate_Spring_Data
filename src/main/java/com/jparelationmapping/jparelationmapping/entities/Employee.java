@@ -7,7 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -23,7 +25,7 @@ public class Employee {
     private String emp_lastName;
     private Integer emp_age;
 
-    //pour stocker  string pas 0,... ordinal dans la base des donnees
+    //pour stocker  string pas 0,ordinaldans la base des donnees
     @Enumerated(EnumType.STRING)
     private TypeEmployee typeEmployee;
 
@@ -36,6 +38,11 @@ public class Employee {
     private List<Experience> experiences ;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<Mission> missions = new ArrayList<>();
+    @JoinTable(
+            name = "employee_mission",
+            joinColumns = {@JoinColumn(name = "emp_id")},
+            inverseJoinColumns ={ @JoinColumn(name = "miss_is")})
+
+    private Set<Mission> missions = new HashSet<>();
 }
 

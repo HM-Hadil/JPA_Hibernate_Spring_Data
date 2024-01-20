@@ -30,7 +30,7 @@ public class Experience {
 
     @ManyToOne
     @JsonIgnore
-    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JoinColumn(name = "FK_emp_id")
     private Employee employee;
 
