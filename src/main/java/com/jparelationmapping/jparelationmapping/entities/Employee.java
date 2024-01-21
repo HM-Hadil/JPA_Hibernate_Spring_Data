@@ -6,9 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -42,6 +41,8 @@ public class Employee {
             joinColumns = {@JoinColumn(name = "emp_id")},
             inverseJoinColumns ={ @JoinColumn(name = "miss_is")})
 
-    private Set<Mission> missions = new HashSet<>();
+   // private Set<Mission> missions = new HashSet<>();
+    private List<Mission> missions = new ArrayList<>();
+
 }
 

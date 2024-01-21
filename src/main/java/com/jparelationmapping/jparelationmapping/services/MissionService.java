@@ -7,6 +7,7 @@ import com.jparelationmapping.jparelationmapping.enums.TypeEmployee;
 import com.jparelationmapping.jparelationmapping.repositories.EmployeeRepo;
 import com.jparelationmapping.jparelationmapping.repositories.MissionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -39,6 +40,29 @@ public class MissionService {
 
     public List<Mission> getAllMissions(){
         return  missionRepo.findAll();
+    }
+
+    public ResponseEntity<String>  assignMissionToEmployee(Long empId,List<Long> missIds){
+        Optional<Employee> employee = employeeRepo.findById(empId);
+        if (employee.isPresent()) {
+            Employee emp = employee.get();
+            // Retrieve missions by their IDs
+            List<Mission> missions = missionRepo.findAllById(missIds);
+
+            // Assign missions to the employee
+            emp.setMissions(missions);
+
+            employeeRepo.save(emp);
+
+            return ResponseEntity.ok("Missions assigned successfully");
+        }
+       else {
+        return ResponseEntity.badRequest().body("Employee not found");
+      }
+
+
+
+
     }
 
 

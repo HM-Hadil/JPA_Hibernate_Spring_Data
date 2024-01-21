@@ -26,5 +26,7 @@ public class Mission {
 
 
     @ManyToMany(cascade = CascadeType.ALL,mappedBy = "missions")
-    private Set<Employee> employees = new HashSet<>();
+  //  private Set<Employee> employees = new HashSet<>();
+      private List<Employee> employees = new ArrayList<>();
+
 }
